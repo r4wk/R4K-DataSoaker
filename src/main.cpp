@@ -32,13 +32,13 @@ void sendLoraData(TimerHandle_t unused)
 	{
 		case LMH_SUCCESS:
 		MYLOG("APP", "LoRa packet sent");
-			break;
+		break;
 
 		case LMH_BUSY:
 		MYLOG("APP", "LoRa radio busy");
-			break;
+		break;
 
-			case LMH_ERROR:
+		case LMH_ERROR:
 		MYLOG("APP", "LoRa radio error");
 		break;
 	}
