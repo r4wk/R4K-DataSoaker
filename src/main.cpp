@@ -64,11 +64,11 @@ void setup_app(void)
  */
 bool init_app(void)
 {
-  MYLOG("APP", "Data Soaker started");
-  std::fill(fake_data, fake_data+PACKET_SIZE, 1);
-  loraSendTimer.begin(10000, sendLoraData, NULL, true);
-  loraSendTimer.start();
-  return true;
+	MYLOG("APP", "Data Soaker started");
+	std::fill(fake_data, fake_data+PACKET_SIZE, 1);
+	loraSendTimer.begin(10000, sendLoraData, NULL, true);
+	loraSendTimer.start();
+	return true;
 }
 
 /**
