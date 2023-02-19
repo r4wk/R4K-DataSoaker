@@ -40,6 +40,7 @@ void sendLoraData(TimerHandle_t unused)
 
 		case LMH_ERROR:
 		MYLOG("APP", "LoRa radio error");
+		loraSendTimer.stop();
 		break;
 	}
 }
