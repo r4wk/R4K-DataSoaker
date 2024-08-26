@@ -17,33 +17,10 @@ char g_ble_dev_name[10] = "Soaker";
 uint16_t PACKET_SIZE = 222;
 /** INT array to send dummy data */
 int *fake_data = new int[PACKET_SIZE];
-/** Software timer for LoRa send */
-SoftwareTimer loraSendTimer;
-
-/**
- * @brief Send LoRaWAN packet with PACKET_SIZE
- * 
- * @param unused 
- */
-void sendLoraData(TimerHandle_t unused)
-{
-	lmh_error_status result = send_lora_packet((uint8_t *)fake_data, PACKET_SIZE);
-	switch (result)
-	{
-		case LMH_SUCCESS:
-		MYLOG("APP", "LoRa packet sent");
-		break;
-
-		case LMH_BUSY:
-		MYLOG("APP", "LoRa radio busy");
-		break;
-
-		case LMH_ERROR:
-		MYLOG("APP", "LoRa radio error");
-		loraSendTimer.stop();
-		break;
-	}
-}
+/** Time between packets */
+#define SLEEP_TIME 10000
+/** Forward declaration */
+void send_lora_data();
 
 /**
  * @brief Set the up app object
@@ -66,9 +43,10 @@ void setup_app(void)
 bool init_app(void)
 {
 	MYLOG("APP", "Data Soaker started");
+	api_timer_stop();
+    g_lorawan_settings.send_repeat_time = SLEEP_TIME;
+    api_timer_restart(SLEEP_TIME);
 	std::fill(fake_data, fake_data+PACKET_SIZE, 1);
-	loraSendTimer.begin(10000, sendLoraData, NULL, true);
-	loraSendTimer.start();
 	return true;
 }
 
@@ -78,7 +56,12 @@ bool init_app(void)
  */
 void app_event_handler(void)
 {
-
+	if ((g_task_event_type & STATUS) == STATUS)
+	{
+		g_task_event_type &= N_STATUS;
+		MYLOG("APP", "Woke up");
+		send_lora_data();
+	}
 }
 
 /**
@@ -109,5 +92,30 @@ void ble_data_handler(void)
 			}
 			at_serial_input(uint8_t('\n'));
 		}
+	}
+}
+
+/**
+ * @brief Send LoRaWAN packet with PACKET_SIZE
+ * 
+ * @param unused 
+ */
+void send_lora_data()
+{
+	lmh_error_status result = send_lora_packet((uint8_t *)fake_data, PACKET_SIZE);
+	switch (result)
+	{
+		case LMH_SUCCESS:
+		MYLOG("APP", "LoRa packet sent");
+		break;
+
+		case LMH_BUSY:
+		MYLOG("APP", "LoRa radio busy");
+		break;
+
+		case LMH_ERROR:
+		MYLOG("APP", "LoRa radio error");
+		api_timer_stop();
+		break;
 	}
 }
