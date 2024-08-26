@@ -7,6 +7,6 @@ Step
 3. Run command `adafruit-nrfutil dfu serial --package data_soaker_v0.1.zip -p <port> -b 115200` (Replace <port> with COM port of your RAK4630)
 4. Set LoRa settings through your favorite terminal program paired with AT Commands https://github.com/rakstars/WisBlock-RAK4631-Helium-Mapper/wiki/Make-a-Helium-Mapper-with-the-WisBlock#over-serial.
   - If you have an Android (easist option) set LoRa setting via the WisBlock-Toolbox app https://github.com/rakstars/WisBlock-RAK4631-Helium-Mapper/wiki/Make-a-Helium-Mapper-with-the-WisBlock#using-the-wisblock-toolbox-lpwan-setup-module
-  - If you use iOS then you can use this app https://github.com/rakstars/WisBlock-RAK4631-Helium-Mapper/wiki/Make-a-Helium-Mapper-with-the-WisBlock#using-the-nrf-toolbox-uart-module
+  - If you use iOS then you can use this app to run AT commands over BT https://github.com/rakstars/WisBlock-RAK4631-Helium-Mapper/wiki/Make-a-Helium-Mapper-with-the-WisBlock#using-the-nrf-toolbox-uart-module
 
 Of course you can compile it yourself with VSCode and PlatformIO. https://docs.rakwireless.com/Knowledge-Hub/Learn/Board-Support-Package-Installation-in-PlatformIO/
