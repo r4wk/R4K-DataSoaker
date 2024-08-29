@@ -10,3 +10,4 @@ Step
   - If you use iOS then you can use this app to run AT commands over BT https://github.com/rakstars/WisBlock-RAK4631-Helium-Mapper/wiki/Make-a-Helium-Mapper-with-the-WisBlock#using-the-nrf-toolbox-uart-module
 
 Of course you can compile it yourself with VSCode and PlatformIO. https://docs.rakwireless.com/Knowledge-Hub/Learn/Board-Support-Package-Installation-in-PlatformIO/
+  - If you are compiling yourself and you don't want to use AT Commands or one of the Bluetooth options. You can now add LoRa settings in the app.h file.
