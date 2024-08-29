@@ -23,11 +23,11 @@ bool otaa_enabled = true;                                 // Flag for OTAA or AB
  * Dev EUI, APP EUI and APP KEY are probably
  * the only ones you will need
 */
-std::string node_device_eui = "";                         // OTAA Device EUI MSB
-std::string node_app_eui = "";                            // OTAA Application EUI MSB
-std::string node_app_key = "";                            // OTAA Application Key MSB
-std::string node_nws_key = "";		                        // ABP Network Session Key MSB
-std::string node_apps_key = "";		                        // ABP Application Session key MSB
+std::string node_device_eui = "";                         // OTAA Device EUI HEX
+std::string node_app_eui = "";                            // OTAA Application EUI HEX
+std::string node_app_key = "";                            // OTAA Application Key HEX
+std::string node_nws_key = "";		                        // ABP Network Session Key HEX
+std::string node_apps_key = "";		                        // ABP Application Session key HEX
 /** To here  */
 
 uint32_t node_dev_addr = 0x26021FB4;								      // ABP Device Address MSB
